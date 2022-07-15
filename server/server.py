@@ -1,9 +1,9 @@
 from flask import Flask,request,jsonify
 import util
 
-app = Flask(__name__)
+app = Flask(__name__)  #Flask Constructor
 
-@app.route('/get_location_names' ,  methods=['GET'])
+@app.route('/get_location_names' ,  methods=['GET'])  # decorator to route URL
 
 
 def get_location_names():
@@ -19,8 +19,8 @@ def get_location_names():
 def predict_home_price():
     total_sqft = float(request.form['total_sqft'])
     location = request.form['location']
-    bhk = request.form['bhk']
-    bath = request.form['bath']
+    bhk = int(request.form['bhk'])
+    bath = int(request.form['bath'])
 
     response = jsonify({
         'estimated_price':util.get_estimated_price(location,total_sqft,bhk,bath)
